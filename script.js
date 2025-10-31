@@ -59,7 +59,7 @@ function initializePartyDetails() {
             const partyDate = new Date(CONFIG.partyDate + 'T12:00:00');
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const formattedDate = partyDate.toLocaleDateString('en-US', options);
-            dateElement.innerHTML = `📅 <strong>Date:</strong> <a href="#" id="add-to-calendar" class="calendar-link">${formattedDate}</a>`;
+            dateElement.innerHTML = `📅 <strong>Date:</strong> ${formattedDate} <button id="add-to-calendar-btn" class="add-to-calendar-btn">📅 Add to Calendar</button>`;
         }
     }
 }
@@ -305,13 +305,109 @@ function addToCalendar() {
 document.addEventListener('DOMContentLoaded', function() {
     // Wait for the element to be created by initializePartyDetails
     setTimeout(() => {
-        const calendarLink = document.getElementById('add-to-calendar');
-        if (calendarLink) {
-            calendarLink.addEventListener('click', function(e) {
+        const calendarBtn = document.getElementById('add-to-calendar-btn');
+        if (calendarBtn) {
+            calendarBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                addToCalendar();
+                showCalendarOptions();
             });
         }
     }, 100);
 });
+
+// Show calendar options dropdown
+function showCalendarOptions() {
+    // Create dropdown menu if it doesn't exist
+    let dropdown = document.getElementById('calendar-dropdown');
+    if (!dropdown) {
+        dropdown = document.createElement('div');
+        dropdown.id = 'calendar-dropdown';
+        dropdown.className = 'calendar-dropdown';
+        dropdown.innerHTML = `
+            <div class="calendar-option" onclick="addToGoogleCalendar()">
+                <span class="calendar-icon">📅</span> Google Calendar
+            </div>
+            <div class="calendar-option" onclick="addToAppleCalendar()">
+                <span class="calendar-icon">🍎</span> Apple Calendar
+            </div>
+            <div class="calendar-option" onclick="downloadICS()">
+                <span class="calendar-icon">📥</span> Download .ics file
+            </div>
+        `;
+        document.body.appendChild(dropdown);
+        
+        // Close dropdown when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!e.target.closest('.calendar-dropdown') && !e.target.closest('#add-to-calendar-btn')) {
+                    dropdown.remove();
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
+        }, 0);
+    }
+    
+    // Position dropdown near the button
+    const btn = document.getElementById('add-to-calendar-btn');
+    const rect = btn.getBoundingClientRect();
+    dropdown.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+    dropdown.style.left = (rect.left + window.scrollX) + 'px';
+}
+
+// Add to Google Calendar
+function addToGoogleCalendar() {
+    if (typeof CONFIG === 'undefined' || !CONFIG.partyDate) {
+        alert('Party date not configured');
+        return;
+    }
+    
+    const partyDate = new Date(CONFIG.partyDate + 'T12:00:00');
+    const year = partyDate.getFullYear();
+    const month = (partyDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = partyDate.getDate().toString().padStart(2, '0');
+    
+    // Parse time
+    let startTime = '11:00';
+    let endTime = '13:00';
+    if (CONFIG.partyTime) {
+        const timeRangeMatch = CONFIG.partyTime.match(/(\d+):(\d+)\s*(AM|PM)\s*-\s*(\d+):(\d+)\s*(AM|PM)/i);
+        if (timeRangeMatch) {
+            let startHours = parseInt(timeRangeMatch[1]);
+            const startMinutes = timeRangeMatch[2];
+            const startPeriod = timeRangeMatch[3].toUpperCase();
+            
+            if (startPeriod === 'PM' && startHours !== 12) startHours += 12;
+            else if (startPeriod === 'AM' && startHours === 12) startHours = 0;
+            
+            let endHours = parseInt(timeRangeMatch[4]);
+            const endMinutes = timeRangeMatch[5];
+            const endPeriod = timeRangeMatch[6].toUpperCase();
+            
+            if (endPeriod === 'PM' && endHours !== 12) endHours += 12;
+            else if (endPeriod === 'AM' && endHours === 12) endHours = 0;
+            
+            startTime = `${startHours.toString().padStart(2, '0')}:${startMinutes}`;
+            endTime = `${endHours.toString().padStart(2, '0')}:${endMinutes}`;
+        }
+    }
+    
+    const startDateTime = `${year}${month}${day}T${startTime.replace(':', '')}00`;
+    const endDateTime = `${year}${month}${day}T${endTime.replace(':', '')}00`;
+    
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Jenna & Charlie's 1st Birthday Party")}&dates=${startDateTime}/${endDateTime}&details=${encodeURIComponent("Join us for Jenna & Charlie's 1st Birthday celebration!")}&location=${encodeURIComponent(CONFIG.partyLocation || '')}&sf=true&output=xml`;
+    
+    window.open(googleCalendarUrl, '_blank');
+    document.getElementById('calendar-dropdown').remove();
+}
+
+// Add to Apple Calendar (download .ics)
+function addToAppleCalendar() {
+    downloadICS();
+}
+
+// Download ICS file
+function downloadICS() {
+    addToCalendar();
+    document.getElementById('calendar-dropdown').remove();
+}
 
