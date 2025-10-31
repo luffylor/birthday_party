@@ -117,54 +117,67 @@ body::before {
 }
 
 /* Avatar positioning for different themes */
-body.theme-jenna #jenna-avatar {
+
+/* Hide all avatars by default */
+.jenna-left, .jenna-right, .charlie-left, .charlie-right {
+    display: none;
+}
+
+/* Jenna's theme - show Jenna on both sides */
+body.theme-jenna .jenna-left {
     display: block;
     top: 15%;
     left: 8%;
     border-color: var(--pink-dark);
     animation-delay: 0s;
+    opacity: 0.95;
 }
 
-body.theme-jenna #charlie-avatar {
+body.theme-jenna .jenna-right {
+    display: block;
+    top: 15%;
+    right: 8%;
+    border-color: var(--pink-dark);
+    animation-delay: 2s;
+    opacity: 0.95;
+}
+
+/* Charlie's theme - show Charlie on both sides */
+body.theme-charlie .charlie-left {
+    display: block;
+    top: 15%;
+    left: 8%;
+    border-color: var(--blue-dark);
+    animation-delay: 0s;
+    opacity: 0.95;
+}
+
+body.theme-charlie .charlie-right {
     display: block;
     top: 15%;
     right: 8%;
     border-color: var(--blue-dark);
     animation-delay: 2s;
-    opacity: 0.7;
+    opacity: 0.95;
 }
 
-body.theme-charlie #charlie-avatar {
-    display: block;
-    top: 15%;
-    right: 8%;
-    border-color: var(--blue-dark);
-    animation-delay: 0s;
-}
-
-body.theme-charlie #jenna-avatar {
+/* Both theme - show one of each */
+body.theme-both .jenna-left {
     display: block;
     top: 15%;
     left: 8%;
     border-color: var(--pink-dark);
-    animation-delay: 2s;
-    opacity: 0.7;
-}
-
-body.theme-both #jenna-avatar {
-    display: block;
-    top: 15%;
-    left: 8%;
-    border-color: var(--pink-dark);
     animation-delay: 0s;
+    opacity: 0.95;
 }
 
-body.theme-both #charlie-avatar {
+body.theme-both .charlie-right {
     display: block;
     top: 15%;
     right: 8%;
     border-color: var(--blue-dark);
     animation-delay: 2s;
+    opacity: 0.95;
 }
 
 /* Shaking head floating animation keyframes */
@@ -603,23 +616,40 @@ body.theme-both .submit-btn {
         opacity: 0.9;
     }
 
-    body.theme-jenna #jenna-avatar,
-    body.theme-charlie #charlie-avatar {
+    body.theme-jenna .jenna-left,
+    body.theme-jenna .jenna-right {
         top: 5%;
+        opacity: 0.9;
     }
     
-    body.theme-jenna #charlie-avatar,
-    body.theme-charlie #jenna-avatar {
+    body.theme-jenna .jenna-left {
+        left: 5%;
+    }
+    
+    body.theme-jenna .jenna-right {
+        right: 5%;
+    }
+    
+    body.theme-charlie .charlie-left,
+    body.theme-charlie .charlie-right {
         top: 5%;
-        opacity: 0.6;
+        opacity: 0.9;
+    }
+    
+    body.theme-charlie .charlie-left {
+        left: 5%;
+    }
+    
+    body.theme-charlie .charlie-right {
+        right: 5%;
     }
 
-    body.theme-both #jenna-avatar {
+    body.theme-both .jenna-left {
         top: 5%;
         left: 5%;
     }
 
-    body.theme-both #charlie-avatar {
+    body.theme-both .charlie-right {
         top: 5%;
         right: 5%;
     }
@@ -670,36 +700,34 @@ body.theme-both .submit-btn {
     }
     
     /* Position avatars above the card on very small screens */
-    body.theme-both #jenna-avatar {
+    body.theme-jenna .jenna-left {
+        top: 20px;
+        left: 15%;
+    }
+    
+    body.theme-jenna .jenna-right {
+        top: 20px;
+        right: 15%;
+    }
+    
+    body.theme-charlie .charlie-left {
+        top: 20px;
+        left: 15%;
+    }
+    
+    body.theme-charlie .charlie-right {
+        top: 20px;
+        right: 15%;
+    }
+    
+    body.theme-both .jenna-left {
         top: 20px;
         left: 10%;
     }
 
-    body.theme-both #charlie-avatar {
+    body.theme-both .charlie-right {
         top: 20px;
         right: 10%;
-    }
-    
-    body.theme-jenna #jenna-avatar {
-        top: 20px;
-        left: 15%;
-    }
-    
-    body.theme-jenna #charlie-avatar {
-        top: 20px;
-        right: 15%;
-        opacity: 0.5;
-    }
-    
-    body.theme-charlie #charlie-avatar {
-        top: 20px;
-        right: 15%;
-    }
-    
-    body.theme-charlie #jenna-avatar {
-        top: 20px;
-        left: 15%;
-        opacity: 0.5;
     }
 
     .invitation-card {
