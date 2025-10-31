@@ -106,43 +106,55 @@ body::before {
 
 .floating-avatar {
     position: absolute;
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     border: 5px solid var(--white);
     box-shadow: 0 10px 30px var(--shadow);
     object-fit: cover;
-    animation: float 20s ease-in-out infinite;
-    opacity: 0.9;
+    animation: shakeFloat 6s ease-in-out infinite;
+    opacity: 0.95;
 }
 
 /* Avatar positioning for different themes */
 body.theme-jenna #jenna-avatar {
     display: block;
-    top: 10%;
-    left: 15%;
+    top: 15%;
+    left: 8%;
     border-color: var(--pink-dark);
+    animation-delay: 0s;
 }
 
 body.theme-jenna #charlie-avatar {
-    display: none;
+    display: block;
+    top: 15%;
+    right: 8%;
+    border-color: var(--blue-dark);
+    animation-delay: 2s;
+    opacity: 0.7;
 }
 
 body.theme-charlie #charlie-avatar {
     display: block;
-    top: 10%;
-    right: 15%;
+    top: 15%;
+    right: 8%;
     border-color: var(--blue-dark);
+    animation-delay: 0s;
 }
 
 body.theme-charlie #jenna-avatar {
-    display: none;
+    display: block;
+    top: 15%;
+    left: 8%;
+    border-color: var(--pink-dark);
+    animation-delay: 2s;
+    opacity: 0.7;
 }
 
 body.theme-both #jenna-avatar {
     display: block;
     top: 15%;
-    left: 10%;
+    left: 8%;
     border-color: var(--pink-dark);
     animation-delay: 0s;
 }
@@ -150,24 +162,42 @@ body.theme-both #jenna-avatar {
 body.theme-both #charlie-avatar {
     display: block;
     top: 15%;
-    right: 10%;
+    right: 8%;
     border-color: var(--blue-dark);
-    animation-delay: 3s;
+    animation-delay: 2s;
 }
 
-/* Floating animation keyframes */
-@keyframes float {
+/* Shaking head floating animation keyframes */
+@keyframes shakeFloat {
     0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
+        transform: translate(0, 0) rotate(-3deg);
     }
-    25% {
-        transform: translate(30px, -30px) rotate(5deg);
+    10% {
+        transform: translate(-5px, -8px) rotate(3deg);
+    }
+    20% {
+        transform: translate(5px, -15px) rotate(-2deg);
+    }
+    30% {
+        transform: translate(-8px, -20px) rotate(4deg);
+    }
+    40% {
+        transform: translate(8px, -25px) rotate(-3deg);
     }
     50% {
-        transform: translate(-20px, -50px) rotate(-5deg);
+        transform: translate(0, -28px) rotate(2deg);
     }
-    75% {
-        transform: translate(-30px, -20px) rotate(3deg);
+    60% {
+        transform: translate(-8px, -25px) rotate(-4deg);
+    }
+    70% {
+        transform: translate(8px, -20px) rotate(3deg);
+    }
+    80% {
+        transform: translate(-5px, -15px) rotate(-2deg);
+    }
+    90% {
+        transform: translate(5px, -8px) rotate(2deg);
     }
 }
 
@@ -212,10 +242,11 @@ body.theme-both #charlie-avatar {
     width: 100%;
     height: 100%;
     background: white;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
 .star::before {
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    opacity: 1;
 }
 
 @keyframes twinkle {
@@ -567,14 +598,20 @@ body.theme-both .submit-btn {
 /* Responsive design */
 @media (max-width: 768px) {
     .floating-avatar {
-        width: 100px;
-        height: 100px;
-        opacity: 0.8;
+        width: 120px;
+        height: 120px;
+        opacity: 0.9;
     }
 
     body.theme-jenna #jenna-avatar,
     body.theme-charlie #charlie-avatar {
         top: 5%;
+    }
+    
+    body.theme-jenna #charlie-avatar,
+    body.theme-charlie #jenna-avatar {
+        top: 5%;
+        opacity: 0.6;
     }
 
     body.theme-both #jenna-avatar {
@@ -627,9 +664,9 @@ body.theme-both .submit-btn {
 
 @media (max-width: 480px) {
     .floating-avatar {
-        width: 70px;
-        height: 70px;
-        opacity: 0.85;
+        width: 90px;
+        height: 90px;
+        opacity: 0.9;
     }
     
     /* Position avatars above the card on very small screens */
@@ -645,14 +682,24 @@ body.theme-both .submit-btn {
     
     body.theme-jenna #jenna-avatar {
         top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 15%;
+    }
+    
+    body.theme-jenna #charlie-avatar {
+        top: 20px;
+        right: 15%;
+        opacity: 0.5;
     }
     
     body.theme-charlie #charlie-avatar {
         top: 20px;
-        right: 50%;
-        transform: translateX(50%);
+        right: 15%;
+    }
+    
+    body.theme-charlie #jenna-avatar {
+        top: 20px;
+        left: 15%;
+        opacity: 0.5;
     }
 
     .invitation-card {

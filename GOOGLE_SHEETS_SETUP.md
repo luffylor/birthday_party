@@ -16,7 +16,7 @@ In Row 1, add these exact headers (in columns A through G):
 
 | A | B | C | D | E | F | G |
 |---|---|---|---|---|---|---|
-| Timestamp | Name | Email | Attending | Guests | Dietary Restrictions | Page |
+| Timestamp | Name | Attending | Adults | Kids | Dietary Restrictions | Page |
 
 These columns will automatically fill when someone submits the RSVP form.
 
@@ -59,9 +59,9 @@ function doPost(e) {
     sheet.appendRow([
       data.timestamp,           // Column A: Timestamp
       data.name,               // Column B: Guest name
-      data.email,              // Column C: Guest email
-      data.attending,          // Column D: Yes/No
-      data.guests,             // Column E: Number of guests
+      data.attending,          // Column C: Yes/No
+      data.adults,             // Column D: Number of adults
+      data.kids,               // Column E: Number of kids
       data.dietary,            // Column F: Dietary restrictions
       data.page                // Column G: Which page they visited
     ]);
@@ -90,9 +90,9 @@ function testScript() {
   const testData = {
     timestamp: new Date().toISOString(),
     name: 'Test Guest',
-    email: 'test@example.com',
     attending: 'yes',
-    guests: '2',
+    adults: '2',
+    kids: '1',
     dietary: 'None',
     page: 'test'
   };
@@ -101,9 +101,9 @@ function testScript() {
   sheet.appendRow([
     testData.timestamp,
     testData.name,
-    testData.email,
     testData.attending,
-    testData.guests,
+    testData.adults,
+    testData.kids,
     testData.dietary,
     testData.page
   ]);
