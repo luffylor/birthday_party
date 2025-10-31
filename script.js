@@ -50,14 +50,16 @@ function initializePartyDetails() {
         }
         
         if (CONFIG.partyLocation) {
-            locationElement.innerHTML = `📍 <strong>Location:</strong> ${CONFIG.partyLocation}`;
+            const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.partyLocation)}`;
+            locationElement.innerHTML = `📍 <strong>Location:</strong> <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="location-link">${CONFIG.partyLocation}</a>`;
         }
         
         if (CONFIG.partyDate) {
-            const partyDate = new Date(CONFIG.partyDate);
+            // Parse date correctly to avoid timezone issues
+            const partyDate = new Date(CONFIG.partyDate + 'T12:00:00');
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const formattedDate = partyDate.toLocaleDateString('en-US', options);
-            dateElement.innerHTML = `📅 <strong>Date:</strong> ${formattedDate}`;
+            dateElement.innerHTML = `📅 <strong>Date:</strong> <a href="#" id="add-to-calendar" class="calendar-link">${formattedDate}</a>`;
         }
     }
 }
@@ -112,9 +114,9 @@ function initializeForm() {
         const formData = {
             timestamp: new Date().toISOString(),
             name: document.getElementById('guest-name').value.trim(),
-            email: document.getElementById('guest-email').value.trim(),
             attending: document.querySelector('input[name="attending"]:checked').value,
-            guests: document.getElementById('guest-count').value,
+            adults: document.getElementById('adult-count').value,
+            kids: document.getElementById('kid-count').value,
             dietary: document.getElementById('dietary-restrictions').value.trim(),
             page: getCurrentPage()
         };
@@ -212,5 +214,104 @@ window.addEventListener('scroll', function() {
         const speed = 0.1 + (index * 0.05);
         avatar.style.transform = `translateY(${scrollPos * speed}px)`;
     });
+});
+
+// Add to calendar functionality
+function addToCalendar() {
+    if (typeof CONFIG === 'undefined' || !CONFIG.partyDate) {
+        alert('Party date not configured');
+        return;
+    }
+    
+    // Parse the party date and time
+    const partyDate = new Date(CONFIG.partyDate + 'T12:00:00');
+    
+    // Extract time from CONFIG.partyTime (e.g., "11:00 AM - 2:00 PM")
+    let startTime = '11:00';
+    let endTime = '14:00';
+    
+    if (CONFIG.partyTime) {
+        // Match both start and end times
+        const timeRangeMatch = CONFIG.partyTime.match(/(\d+):(\d+)\s*(AM|PM)\s*-\s*(\d+):(\d+)\s*(AM|PM)/i);
+        if (timeRangeMatch) {
+            // Parse start time
+            let startHours = parseInt(timeRangeMatch[1]);
+            const startMinutes = timeRangeMatch[2];
+            const startPeriod = timeRangeMatch[3].toUpperCase();
+            
+            if (startPeriod === 'PM' && startHours !== 12) {
+                startHours += 12;
+            } else if (startPeriod === 'AM' && startHours === 12) {
+                startHours = 0;
+            }
+            
+            // Parse end time
+            let endHours = parseInt(timeRangeMatch[4]);
+            const endMinutes = timeRangeMatch[5];
+            const endPeriod = timeRangeMatch[6].toUpperCase();
+            
+            if (endPeriod === 'PM' && endHours !== 12) {
+                endHours += 12;
+            } else if (endPeriod === 'AM' && endHours === 12) {
+                endHours = 0;
+            }
+            
+            startTime = `${startHours.toString().padStart(2, '0')}:${startMinutes}`;
+            endTime = `${endHours.toString().padStart(2, '0')}:${endMinutes}`;
+        }
+    }
+    
+    // Format dates for .ics file
+    const year = partyDate.getFullYear();
+    const month = (partyDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = partyDate.getDate().toString().padStart(2, '0');
+    
+    const startDateTime = `${year}${month}${day}T${startTime.replace(':', '')}00`;
+    const endDateTime = `${year}${month}${day}T${endTime.replace(':', '')}00`;
+    
+    // Create .ics file content
+    const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Birthday Party//EN',
+        'BEGIN:VEVENT',
+        `DTSTART:${startDateTime}`,
+        `DTEND:${endDateTime}`,
+        `SUMMARY:Jenna & Charlie's 1st Birthday Party`,
+        `DESCRIPTION:Join us for Jenna & Charlie's 1st Birthday celebration!`,
+        `LOCATION:${CONFIG.partyLocation || ''}`,
+        'STATUS:CONFIRMED',
+        'SEQUENCE:0',
+        'BEGIN:VALARM',
+        'TRIGGER:-PT24H',
+        'DESCRIPTION:Reminder: Birthday Party Tomorrow',
+        'ACTION:DISPLAY',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+    ].join('\r\n');
+    
+    // Create a blob and download link
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute('download', 'birthday-party.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Attach calendar click handler after DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait for the element to be created by initializePartyDetails
+    setTimeout(() => {
+        const calendarLink = document.getElementById('add-to-calendar');
+        if (calendarLink) {
+            calendarLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                addToCalendar();
+            });
+        }
+    }, 100);
 });
 

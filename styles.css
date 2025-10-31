@@ -43,6 +43,56 @@ body.theme-both {
         var(--blue) 100%);
 }
 
+/* Decorative elements container */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.15) 0%, transparent 40%);
+}
+
+/* Balloons decoration */
+.balloon {
+    position: fixed;
+    width: 60px;
+    height: 75px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+}
+
 /* Avatar container */
 #avatar-container {
     position: fixed;
@@ -121,6 +171,64 @@ body.theme-both #charlie-avatar {
     }
 }
 
+/* Confetti and stars decorations */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+    animation: confetti-fall 12s linear infinite;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.star {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+.star::before,
+.star::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+.star::before {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
 /* Main content */
 .main-content {
     position: relative;
@@ -141,6 +249,43 @@ body.theme-both #charlie-avatar {
     width: 100%;
     box-shadow: 0 20px 60px var(--shadow);
     backdrop-filter: blur(10px);
+    position: relative;
+    border: 3px solid transparent;
+}
+
+/* Decorative corners for invitation card */
+.invitation-card::before {
+    content: '🎈';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    font-size: 2rem;
+    z-index: 1;
+}
+
+.invitation-card::after {
+    content: '🎁';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 2rem;
+    z-index: 1;
+}
+
+/* Add decorative border based on theme */
+body.theme-jenna .invitation-card {
+    border-color: var(--pink-dark);
+    box-shadow: 0 20px 60px var(--shadow), 0 0 0 8px rgba(255, 182, 193, 0.2);
+}
+
+body.theme-charlie .invitation-card {
+    border-color: var(--blue-dark);
+    box-shadow: 0 20px 60px var(--shadow), 0 0 0 8px rgba(135, 206, 235, 0.2);
+}
+
+body.theme-both .invitation-card {
+    border-image: linear-gradient(135deg, var(--pink-dark), var(--blue-dark)) 1;
+    box-shadow: 0 20px 60px var(--shadow), 0 0 0 8px rgba(255, 182, 193, 0.15), 0 0 0 16px rgba(135, 206, 235, 0.15);
 }
 
 #party-title {
@@ -172,12 +317,72 @@ body.theme-both #party-title {
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 30px;
+    position: relative;
+    border-left: 5px solid transparent;
+}
+
+body.theme-jenna .party-details {
+    border-left-color: var(--pink-dark);
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(240, 240, 240, 0.5) 100%);
+}
+
+body.theme-charlie .party-details {
+    border-left-color: var(--blue-dark);
+    background: linear-gradient(135deg, rgba(135, 206, 235, 0.15) 0%, rgba(240, 240, 240, 0.5) 100%);
+}
+
+body.theme-both .party-details {
+    border-left: 5px solid;
+    border-image: linear-gradient(180deg, var(--pink-dark), var(--blue-dark)) 1;
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.1) 0%, rgba(240, 240, 240, 0.5) 50%, rgba(135, 206, 235, 0.1) 100%);
 }
 
 .party-details p {
     font-size: 1.1rem;
     margin: 10px 0;
     color: var(--text-dark);
+}
+
+/* Clickable links in party details */
+.calendar-link,
+.location-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: currentColor;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.calendar-link:hover {
+    text-decoration-style: solid;
+    font-weight: bold;
+}
+
+.location-link:hover {
+    text-decoration-style: solid;
+    font-weight: bold;
+}
+
+body.theme-jenna .calendar-link:hover,
+body.theme-jenna .location-link:hover {
+    color: var(--pink-dark);
+}
+
+body.theme-charlie .calendar-link:hover,
+body.theme-charlie .location-link:hover {
+    color: var(--blue-dark);
+}
+
+body.theme-both .calendar-link:hover {
+    background: linear-gradient(90deg, var(--pink-dark) 0%, var(--blue-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.theme-both .location-link:hover {
+    color: var(--blue-dark);
 }
 
 /* Countdown timer */
@@ -219,6 +424,13 @@ body.theme-both #party-title {
 
 /* Form styles */
 .form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
     margin-bottom: 20px;
 }
 
@@ -357,6 +569,7 @@ body.theme-both .submit-btn {
     .floating-avatar {
         width: 100px;
         height: 100px;
+        opacity: 0.8;
     }
 
     body.theme-jenna #jenna-avatar,
@@ -373,9 +586,21 @@ body.theme-both .submit-btn {
         top: 5%;
         right: 5%;
     }
+    
+    /* Reduce confetti on mobile */
+    .confetti {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .star {
+        width: 15px;
+        height: 15px;
+    }
 
     .invitation-card {
         padding: 25px;
+        margin-top: 120px; /* Add space for avatars */
     }
 
     #party-title {
@@ -393,16 +618,46 @@ body.theme-both .submit-btn {
     .rsvp-section h2 {
         font-size: 1.5rem;
     }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }
 
 @media (max-width: 480px) {
     .floating-avatar {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
+        opacity: 0.85;
+    }
+    
+    /* Position avatars above the card on very small screens */
+    body.theme-both #jenna-avatar {
+        top: 20px;
+        left: 10%;
+    }
+
+    body.theme-both #charlie-avatar {
+        top: 20px;
+        right: 10%;
+    }
+    
+    body.theme-jenna #jenna-avatar {
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    body.theme-charlie #charlie-avatar {
+        top: 20px;
+        right: 50%;
+        transform: translateX(50%);
     }
 
     .invitation-card {
         padding: 20px;
+        margin-top: 110px; /* Space for avatars */
     }
 
     #party-title {
