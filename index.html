@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Party Invitation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating avatar containers -->
+    <div id="avatar-container">
+        <img src="images/jenna-avatar.png" alt="Jenna" class="floating-avatar" id="jenna-avatar">
+        <img src="images/charlie-avatar.png" alt="Charlie" class="floating-avatar" id="charlie-avatar">
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="invitation-card">
+            <!-- Dynamic party title -->
+            <h1 id="party-title">Birthday Party Invitation</h1>
+            
+            <!-- Party details -->
+            <div class="party-details">
+                <p class="party-date">📅 <strong>Date:</strong> [Add Date Here]</p>
+                <p class="party-time">🕐 <strong>Time:</strong> [Add Time Here]</p>
+                <p class="party-location">📍 <strong>Location:</strong> [Add Location Here]</p>
+            </div>
+
+            <!-- Optional countdown timer -->
+            <div id="countdown" class="countdown">
+                <p>🎉 Party starts in:</p>
+                <div class="countdown-timer">
+                    <span id="days">0</span> days
+                    <span id="hours">0</span> hours
+                    <span id="minutes">0</span> minutes
+                </div>
+            </div>
+
+            <!-- RSVP Form -->
+            <div class="rsvp-section">
+                <h2>RSVP</h2>
+                <form id="rsvp-form">
+                    <div class="form-group">
+                        <label for="guest-name">Name *</label>
+                        <input type="text" id="guest-name" name="name" required placeholder="Your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guest-email">Email *</label>
+                        <input type="email" id="guest-email" name="email" required placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Will you be attending? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="attending" value="yes" required>
+                                <span>Yes, I'll be there! 🎉</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attending" value="no">
+                                <span>Sorry, can't make it 😢</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guest-count">Number of Guests *</label>
+                        <input type="number" id="guest-count" name="guests" min="1" max="10" value="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dietary-restrictions">Dietary Restrictions / Special Requests</label>
+                        <textarea id="dietary-restrictions" name="dietary" rows="3" placeholder="Any allergies or dietary preferences?"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span class="btn-text">Send RSVP</span>
+                        <span class="btn-loader" style="display: none;">Sending...</span>
+                    </button>
+                </form>
+
+                <!-- Success/Error messages -->
+                <div id="form-message" class="form-message" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

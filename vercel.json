@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/jenna", "destination": "/index.html" },
+    { "source": "/charlie", "destination": "/index.html" },
+    { "source": "/jenna&charlie", "destination": "/index.html" },
+    { "source": "/jenna%26charlie", "destination": "/index.html" }
+  ]
+}
+

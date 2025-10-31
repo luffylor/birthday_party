@@ -1,0 +1,15 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pink circular background -->
+  <circle cx="100" cy="100" r="100" fill="#FFB6C1"/>
+  
+  <!-- Cute face -->
+  <circle cx="70" cy="80" r="8" fill="#333333"/> <!-- Left eye -->
+  <circle cx="130" cy="80" r="8" fill="#333333"/> <!-- Right eye -->
+  
+  <!-- Smile -->
+  <path d="M 70 120 Q 100 140 130 120" stroke="#333333" stroke-width="4" fill="none" stroke-linecap="round"/>
+  
+  <!-- Text -->
+  <text x="100" y="180" font-family="Arial, sans-serif" font-size="20" fill="#333333" text-anchor="middle" font-weight="bold">JENNA</text>
+</svg>
+
