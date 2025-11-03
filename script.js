@@ -44,6 +44,8 @@ function initializePartyDetails() {
         const dateElement = document.querySelector('.party-date');
         const timeElement = document.querySelector('.party-time');
         const locationElement = document.querySelector('.party-location');
+        const noteElement = document.querySelector('.party-note');
+        const noteTextElement = document.querySelector('.party-note-text');
         
         if (CONFIG.partyTime) {
             timeElement.innerHTML = `🕐 <strong>Time:</strong> ${CONFIG.partyTime}`;
@@ -52,6 +54,11 @@ function initializePartyDetails() {
         if (CONFIG.partyLocation) {
             const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.partyLocation)}`;
             locationElement.innerHTML = `📍 <strong>Location:</strong> <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="location-link">${CONFIG.partyLocation}</a>`;
+        }
+        
+        if (CONFIG.partyNote) {
+            noteTextElement.textContent = CONFIG.partyNote;
+            noteElement.style.display = 'block';
         }
         
         if (CONFIG.partyDate) {
