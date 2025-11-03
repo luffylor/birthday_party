@@ -7,7 +7,8 @@ const CONFIG = {
     // Party details - customize these!
     partyDate: '2025-11-16', // YYYY-MM-DD format
     partyTime: '11:00 AM - 1:00 PM',
-    partyLocation: 'Lynwood Park, 3360 Osborne Rd NE, Atlanta, GA 30319',
+    partyLocation: 'Brookhaven Park, 4158 Peachtree Rd NE, Atlanta, GA 30319',
+    partyNote: 'We\'ll be having a baby music class! You\'re encouraged to bring instruments so kids can make some music together.',
     
     // Enable/disable countdown timer
     enableCountdown: true
