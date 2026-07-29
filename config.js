@@ -1,17 +1,22 @@
 // Update the farewell fields before sharing https://your-site.com/farewell.
 // Add your photo at images/farewell-family.jpg, or change farewell.photo to its path.
 const CONFIG = {
-  googleSheetsURL: 'https://script.google.com/macros/s/AKfycbwz6-4f-v101Iy8Guzn6SW3BZSPeVBKIyQw8lAS-n3J0pQ7C5THRB1m_OsH-Z1VFmc88g/exec',
+  googleSheetsURL: 'https://script.google.com/macros/s/AKfycbz70Bbqhd4SKM_CAER8VYBAvr5SKRtXpUUnm98uVmhptK6OppwJa3P1jhoHxA2E1Ro/exec',
   farewell: {
-    title: 'One Last Celebration Before We Move',
+    title: 'One Last Splash Before We Move!',
     eyebrow: 'A little gathering before a big adventure',
-    intro: "Before we go, we'd love to celebrate, catch up, and make a few more happy memories with the people who have made this place feel like home.",
+    intro: "We’re moving to California! Before we go, we’d love to celebrate, catch up, and make a few more happy memories with the people who have made this place feel like home.",
     date: '2026-08-08',
     time: '11:30 AM - 1:30 PM',
     location: 'Murphey Candler Park Pool',
-    note: 'We’d be so happy to celebrate with the friends and families who have made our time here so special—Hayley would especially love to see her classmates and friends. Pizza and drinks will be waiting for everyone.',
+    note: [
+      'We’d be so happy to celebrate with the friends and families who have made our time here so special.',
+      'Hayley would especially love to see her classmates and friends.',
+      'Pizza and drinks will be waiting for everyone.'
+    ],
+    giftNote: 'No gifts, please—your presence is the perfect present (and saves us from adding anything else to the moving truck 😄).',
     photo: 'images/farewell-family.jpg',
-    calendarTitle: 'Farewell Party — Bay Area Bound!',
+    calendarTitle: 'One Last Splash Before We Move!',
     calendarDescription: 'Join us to celebrate and make a few more happy memories before our family moves to the Bay Area.'
   },
   birthday: {

@@ -13,15 +13,15 @@
 <body>
   <div class="sky" aria-hidden="true"><span class="sun"></span><span class="cloud cloud-one"></span><span class="cloud cloud-two"></span></div>
   <div class="pool-decor" aria-hidden="true">
-    <span class="duck duck-left"></span><span class="duck duck-right"></span><span class="floatie"></span>
+    <span class="duck duck-left"></span><span class="duck duck-right"></span><span class="watermelon-float watermelon-one"></span><span class="watermelon-float watermelon-two"></span><span class="popsicle"></span>
     <span class="bubble bubble-one"></span><span class="bubble bubble-two"></span><span class="bubble bubble-three"></span>
   </div>
   <main class="page-shell">
     <section class="invitation-card" aria-labelledby="party-title">
       <p class="eyebrow" id="eyebrow">A little gathering before a big adventure</p>
       <div class="photo-frame" id="photo-frame">
-        <img id="family-photo" alt="Our family" hidden>
-        <div class="photo-placeholder" id="photo-placeholder" aria-label="Family photo placeholder">
+        <img id="family-photo" src="images/farewell-family.jpg" alt="Our family">
+        <div class="photo-placeholder" id="photo-placeholder" aria-label="Family photo placeholder" hidden>
           <span>✦</span><strong>Our family photo</strong><small>Coming soon</small>
         </div>
       </div>
@@ -33,7 +33,8 @@
         <div class="detail"><span aria-hidden="true">🕐</span><p><strong>Time</strong><span id="party-time">To be announced</span></p></div>
         <div class="detail"><span aria-hidden="true">📍</span><p><strong>Where</strong><a id="party-location" href="#">To be announced</a></p></div>
       </div>
-      <p class="party-note" id="party-note" hidden></p>
+      <div class="party-note" id="party-note" hidden></div>
+      <p class="gift-note" id="gift-note" hidden></p>
       <button id="add-to-calendar-btn" class="calendar-button" type="button" hidden>Add to calendar</button>
 
       <section class="rsvp-section" aria-labelledby="rsvp-heading">
@@ -41,6 +42,7 @@
         <p class="rsvp-copy">Please let us know if you can make it—we’d love to celebrate together.</p>
         <form id="rsvp-form">
           <div class="form-group"><label for="guest-name">Your name <em>*</em></label><input id="guest-name" name="name" type="text" autocomplete="name" placeholder="First and last name" required></div>
+          <div class="form-group"><label for="guest-email">Email <em>*</em></label><input id="guest-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required></div>
           <fieldset class="form-group attendance-group"><legend>Will you be joining us? <em>*</em></legend>
             <label><input type="radio" name="attending" value="yes" required><span>Joyfully yes!</span></label>
             <label><input type="radio" name="attending" value="no"><span>We’ll be there in spirit</span></label>
@@ -49,6 +51,7 @@
             <div class="form-group"><label for="adult-count">Adults <em>*</em></label><input id="adult-count" name="adults" type="number" min="0" max="20" value="1" required></div>
             <div class="form-group"><label for="kid-count">Kids</label><input id="kid-count" name="kids" type="number" min="0" max="20" value="0" required></div>
           </div>
+          <div class="form-group"><label for="kid-names">Kids’ names <em id="kid-names-required" hidden>*</em></label><textarea id="kid-names" name="kidNames" rows="2" placeholder="Please list every child joining us—so we can have a little surprise ready!"></textarea><small class="field-help">Required when one or more kids are joining us.</small></div>
           <div class="form-group"><label for="dietary-restrictions">Anything we should know?</label><textarea id="dietary-restrictions" name="dietary" rows="3" placeholder="Allergies, food preferences, or a note for us"></textarea></div>
           <button type="submit" class="submit-btn" id="submit-btn"><span class="btn-text">Send RSVP <span aria-hidden="true">→</span></span><span class="btn-loader" hidden>Sending…</span></button>
         </form>

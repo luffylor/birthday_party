@@ -25,11 +25,25 @@ function populateInvitation() {
     location.rel = 'noopener noreferrer';
   } else location.removeAttribute('href');
   const note = document.getElementById('party-note');
-  note.textContent = eventConfig.note || '';
-  note.hidden = !eventConfig.note;
+  const noteSections = Array.isArray(eventConfig.note) ? eventConfig.note : [eventConfig.note];
+  const visibleNoteSections = noteSections.filter(Boolean);
+  note.replaceChildren(...visibleNoteSections.map((section) => {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = section;
+    return paragraph;
+  }));
+  note.hidden = visibleNoteSections.length === 0;
+  const giftNote = document.getElementById('gift-note');
+  giftNote.textContent = eventConfig.giftNote || '';
+  giftNote.hidden = !eventConfig.giftNote;
   const calendar = document.getElementById('add-to-calendar-btn');
   calendar.hidden = !(eventConfig.date && parseTimeRange(eventConfig.time));
-  if (isFarewell) loadPhoto(eventConfig.photo);
+  if (isFarewell) {
+    loadPhoto(eventConfig.photo);
+  } else {
+    document.getElementById('family-photo').hidden = true;
+    document.getElementById('photo-placeholder').hidden = false;
+  }
 }
 
 function setText(id, value) { document.getElementById(id).textContent = value; }
@@ -39,14 +53,36 @@ function formatDate(date) {
 }
 
 function loadPhoto(src) {
-  if (!src) return;
   const image = document.getElementById('family-photo');
-  image.onload = () => { image.hidden = false; document.getElementById('photo-placeholder').hidden = true; };
+  const placeholder = document.getElementById('photo-placeholder');
+  if (!src) {
+    image.hidden = true;
+    placeholder.hidden = false;
+    return;
+  }
+  image.onload = () => {
+    image.hidden = false;
+    placeholder.hidden = true;
+  };
+  image.onerror = () => {
+    image.hidden = true;
+    placeholder.hidden = false;
+  };
   image.src = src;
 }
 
 function initializeForm() {
   const form = document.getElementById('rsvp-form');
+  const kidCount = document.getElementById('kid-count');
+  const kidNames = document.getElementById('kid-names');
+  const kidNamesRequired = document.getElementById('kid-names-required');
+  const syncKidNamesRequirement = () => {
+    const required = Number(kidCount.value) > 0;
+    kidNames.required = required;
+    kidNamesRequired.hidden = !required;
+  };
+  kidCount.addEventListener('input', syncKidNamesRequirement);
+  syncKidNamesRequirement();
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!form.checkValidity()) return form.reportValidity();
@@ -55,17 +91,24 @@ function initializeForm() {
     document.querySelector('.btn-text').hidden = true;
     document.querySelector('.btn-loader').hidden = false;
     try {
+      const email = document.getElementById('guest-email').value.trim();
+      const kidNamesValue = kidNames.value.trim();
+      const dietary = document.getElementById('dietary-restrictions').value.trim();
       await submitToGoogleSheets({
         timestamp: new Date().toISOString(),
         name: document.getElementById('guest-name').value.trim(),
+        email,
         attending: document.querySelector('input[name="attending"]:checked').value,
         adults: document.getElementById('adult-count').value,
         kids: document.getElementById('kid-count').value,
-        dietary: document.getElementById('dietary-restrictions').value.trim(),
+        kidNames: kidNamesValue,
+        // Also include names in the existing notes field so the current RSVP sheet records them.
+        dietary: [`Email: ${email}`, kidNamesValue && `Kids’ names: ${kidNamesValue}`, dietary].filter(Boolean).join('\n'),
         page: isFarewell ? 'farewell' : 'birthday'
       });
       showMessage('success', "Thank you — we can't wait to celebrate together!");
       form.reset();
+      syncKidNamesRequirement();
     } catch (error) {
       console.error('RSVP submission error:', error);
       showMessage('error', 'We could not send your RSVP. Please try again or contact us directly.');
