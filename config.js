@@ -1,7 +1,7 @@
 // Update the farewell fields before sharing https://your-site.com/farewell.
 // Add your photo at images/farewell-family.jpg, or change farewell.photo to its path.
 const CONFIG = {
-  googleSheetsURL: 'https://script.google.com/macros/s/AKfycbz70Bbqhd4SKM_CAER8VYBAvr5SKRtXpUUnm98uVmhptK6OppwJa3P1jhoHxA2E1Ro/exec',
+  googleSheetsURL: 'https://script.google.com/macros/s/AKfycbwzJ8JZ7fQ4PRu1OpSyW36BE2zG6kb482Ozeshhgo6EuGmmCNHDnfzozPcR9omQ9zXy/exec',
   farewell: {
     title: 'One Last Splash Before We Move!',
     eyebrow: 'A little gathering before a big adventure',
