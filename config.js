@@ -3,7 +3,7 @@
 const CONFIG = {
   googleSheetsURL: 'https://script.google.com/macros/s/AKfycbwz6-4f-v101Iy8Guzn6SW3BZSPeVBKIyQw8lAS-n3J0pQ7C5THRB1m_OsH-Z1VFmc88g/exec',
   farewell: {
-    title: "We're headed to the Bay Area!",
+    title: 'One Last Celebration Before the Bay Area',
     eyebrow: 'A little gathering before a big adventure',
     intro: "Before we go, we'd love one more afternoon of hugs, stories, and play with the people who have made this place feel like home.",
     date: '', // YYYY-MM-DD, for example: '2026-08-22'

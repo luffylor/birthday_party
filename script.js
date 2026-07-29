@@ -1,4 +1,7 @@
-const isFarewell = window.location.pathname.toLowerCase().includes('/farewell') || new URLSearchParams(window.location.search).get('invitation') === 'farewell';
+const path = window.location.pathname.toLowerCase();
+const isBirthdayRoute = path.includes('/jenna') || path.includes('/charlie');
+// The farewell invite is the main page as well as the dedicated /farewell link.
+const isFarewell = !isBirthdayRoute || new URLSearchParams(window.location.search).get('invitation') === 'farewell';
 const eventConfig = isFarewell ? CONFIG.farewell : CONFIG.birthday;
 
 document.addEventListener('DOMContentLoaded', () => {
