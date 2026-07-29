@@ -1,118 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Party Invitation</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A family farewell party invitation and RSVP.">
+  <title>Farewell Party</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Decorative elements -->
-    <div class="decorations">
-        <!-- Confetti pieces -->
-        <div class="confetti" style="left: 10%; top: -50px; background: #FFB6C1; animation-delay: 0s;"></div>
-        <div class="confetti" style="left: 25%; top: -80px; background: #87CEEB; animation-delay: 2s;"></div>
-        <div class="confetti" style="left: 40%; top: -120px; background: #FFD700; animation-delay: 1s;"></div>
-        <div class="confetti" style="left: 55%; top: -90px; background: #FF8FA3; animation-delay: 3s;"></div>
-        <div class="confetti" style="left: 70%; top: -60px; background: #A0D9F5; animation-delay: 4s;"></div>
-        <div class="confetti" style="left: 85%; top: -100px; background: #98FB98; animation-delay: 2.5s;"></div>
-        <div class="confetti" style="left: 15%; top: -110px; background: #DDA0DD; animation-delay: 1.5s;"></div>
-        <div class="confetti" style="left: 60%; top: -70px; background: #FFA07A; animation-delay: 3.5s;"></div>
-        
-        <!-- Stars -->
-        <div class="star" style="left: 5%; top: 15%; animation-delay: 0s;"></div>
-        <div class="star" style="left: 90%; top: 25%; animation-delay: 1s;"></div>
-        <div class="star" style="left: 15%; top: 60%; animation-delay: 2s;"></div>
-        <div class="star" style="left: 85%; top: 70%; animation-delay: 0.5s;"></div>
-        <div class="star" style="left: 50%; top: 85%; animation-delay: 1.5s;"></div>
-    </div>
-
-    <!-- Floating avatar containers -->
-    <div id="avatar-container">
-        <img src="images/jenna-avatar.png" alt="Jenna" class="floating-avatar jenna-left" id="jenna-avatar-left">
-        <img src="images/jenna-avatar.png" alt="Jenna" class="floating-avatar jenna-right" id="jenna-avatar-right">
-        <img src="images/charlie-avatar.png" alt="Charlie" class="floating-avatar charlie-left" id="charlie-avatar-left">
-        <img src="images/charlie-avatar.png" alt="Charlie" class="floating-avatar charlie-right" id="charlie-avatar-right">
-    </div>
-
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="invitation-card">
-            <!-- Dynamic party title -->
-            <h1 id="party-title">Birthday Party Invitation</h1>
-            
-            <!-- Party details -->
-            <div class="party-details">
-                <p class="party-date">📅 <strong>Date:</strong> [Add Date Here]</p>
-                <p class="party-time">🕐 <strong>Time:</strong> [Add Time Here]</p>
-                <p class="party-location">📍 <strong>Location:</strong> [Add Location Here]</p>
-                <p class="party-note" style="display: none;">ℹ️ <strong>Note:</strong> <span class="party-note-text"></span></p>
-            </div>
-
-            <!-- Optional countdown timer -->
-            <div id="countdown" class="countdown">
-                <p>🎉 Party starts in:</p>
-                <div class="countdown-timer">
-                    <span id="days">0</span> days
-                    <span id="hours">0</span> hours
-                    <span id="minutes">0</span> minutes
-                </div>
-            </div>
-
-            <!-- RSVP Form -->
-            <div class="rsvp-section">
-                <h2>RSVP</h2>
-                <form id="rsvp-form">
-                    <div class="form-group">
-                        <label for="guest-name">Name *</label>
-                        <input type="text" id="guest-name" name="name" required placeholder="Your name">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Will you be attending? *</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="attending" value="yes" required>
-                                <span>Yes, I'll be there! 🎉</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="attending" value="no">
-                                <span>Sorry, can't make it 😢</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="adult-count">Number of Adults *</label>
-                            <input type="number" id="adult-count" name="adults" min="0" max="20" value="1" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="kid-count">Number of Kids *</label>
-                            <input type="number" id="kid-count" name="kids" min="0" max="20" value="0" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dietary-restrictions">Dietary Restrictions / Special Requests</label>
-                        <textarea id="dietary-restrictions" name="dietary" rows="3" placeholder="Any allergies or dietary preferences?"></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn" id="submit-btn">
-                        <span class="btn-text">Send RSVP</span>
-                        <span class="btn-loader" style="display: none;">Sending...</span>
-                    </button>
-                </form>
-
-                <!-- Success/Error messages -->
-                <div id="form-message" class="form-message" style="display: none;"></div>
-            </div>
+  <div class="sky" aria-hidden="true"><span class="sun"></span><span class="cloud cloud-one"></span><span class="cloud cloud-two"></span></div>
+  <main class="page-shell">
+    <section class="invitation-card" aria-labelledby="party-title">
+      <p class="eyebrow" id="eyebrow">A little gathering before a big adventure</p>
+      <div class="photo-frame" id="photo-frame">
+        <img id="family-photo" alt="Our family" hidden>
+        <div class="photo-placeholder" id="photo-placeholder" aria-label="Family photo placeholder">
+          <span>✦</span><strong>Our family photo</strong><small>Coming soon</small>
         </div>
-    </div>
+      </div>
+      <h1 id="party-title">We're headed to the Bay Area!</h1>
+      <p class="intro" id="party-intro">Before we go, we'd love one more afternoon of hugs, stories, and play with the people who have made this place feel like home.</p>
 
-    <script src="config.js"></script>
-    <script src="script.js"></script>
+      <div class="party-details" aria-label="Party details">
+        <div class="detail"><span aria-hidden="true">📅</span><p><strong>Date</strong><span id="party-date">To be announced</span></p></div>
+        <div class="detail"><span aria-hidden="true">🕐</span><p><strong>Time</strong><span id="party-time">To be announced</span></p></div>
+        <div class="detail"><span aria-hidden="true">📍</span><p><strong>Where</strong><a id="party-location" href="#">To be announced</a></p></div>
+      </div>
+      <p class="party-note" id="party-note" hidden></p>
+      <button id="add-to-calendar-btn" class="calendar-button" type="button" hidden>Add to calendar</button>
+
+      <section class="rsvp-section" aria-labelledby="rsvp-heading">
+        <div class="section-heading"><span>RSVP</span><h2 id="rsvp-heading">Save us a spot</h2></div>
+        <p class="rsvp-copy">Haley would be so happy to see her friends and classmates there, too.</p>
+        <form id="rsvp-form">
+          <div class="form-group"><label for="guest-name">Your name <em>*</em></label><input id="guest-name" name="name" type="text" autocomplete="name" placeholder="First and last name" required></div>
+          <fieldset class="form-group attendance-group"><legend>Will you be joining us? <em>*</em></legend>
+            <label><input type="radio" name="attending" value="yes" required><span>Joyfully yes!</span></label>
+            <label><input type="radio" name="attending" value="no"><span>We’ll be there in spirit</span></label>
+          </fieldset>
+          <div class="form-row">
+            <div class="form-group"><label for="adult-count">Adults <em>*</em></label><input id="adult-count" name="adults" type="number" min="0" max="20" value="1" required></div>
+            <div class="form-group"><label for="kid-count">Kids</label><input id="kid-count" name="kids" type="number" min="0" max="20" value="0" required></div>
+          </div>
+          <div class="form-group"><label for="dietary-restrictions">Anything we should know?</label><textarea id="dietary-restrictions" name="dietary" rows="3" placeholder="Allergies, food preferences, or a note for us"></textarea></div>
+          <button type="submit" class="submit-btn" id="submit-btn"><span class="btn-text">Send RSVP <span aria-hidden="true">→</span></span><span class="btn-loader" hidden>Sending…</span></button>
+        </form>
+        <div id="form-message" class="form-message" role="status" hidden></div>
+      </section>
+      <p class="closing" id="closing">With love, from our family to yours</p>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
