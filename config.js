@@ -9,7 +9,7 @@ const CONFIG = {
     date: '2026-08-08',
     time: '11:30 AM - 1:30 PM',
     location: 'Murphey Candler Park Pool',
-    note: 'Friends, Haley’s classmates, and all kids are warmly invited.',
+    note: 'We’d be so happy to celebrate with the friends and families who have made our time here so special—Haley would especially love to see her classmates and friends.',
     photo: 'images/farewell-family.jpg',
     calendarTitle: 'Farewell Party — Bay Area Bound!',
     calendarDescription: 'Join us to celebrate and make a few more happy memories before our family moves to the Bay Area.'
