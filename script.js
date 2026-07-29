@@ -28,7 +28,7 @@ function populateInvitation() {
   note.textContent = eventConfig.note || '';
   note.hidden = !eventConfig.note;
   const calendar = document.getElementById('add-to-calendar-btn');
-  calendar.hidden = !(eventConfig.date && eventConfig.time);
+  calendar.hidden = !(eventConfig.date && parseTimeRange(eventConfig.time));
   if (isFarewell) loadPhoto(eventConfig.photo);
 }
 

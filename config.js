@@ -6,9 +6,9 @@ const CONFIG = {
     title: 'One Last Celebration Before the Bay Area',
     eyebrow: 'A little gathering before a big adventure',
     intro: "Before we go, we'd love one more afternoon of hugs, stories, and play with the people who have made this place feel like home.",
-    date: '', // YYYY-MM-DD, for example: '2026-08-22'
-    time: '', // for example: '2:00 PM - 5:00 PM'
-    location: '', // full address or venue name
+    date: '2026-08-08',
+    time: '11:30 AM',
+    location: 'Murphey Candler Park Pool',
     note: 'Friends, Haley’s classmates, and all kids are warmly invited.',
     photo: 'images/farewell-family.jpg',
     calendarTitle: 'Farewell Party — Bay Area Bound!',
