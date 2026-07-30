@@ -1,66 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A family farewell party invitation and RSVP.">
-  <title>Farewell Party</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="Join us for one last pool party before we move to California!">
+ <title>One Last Splash Before We Move!</title>
+ <link rel="canonical" href="https://xx-farewell-party.vercel.app/">
+ <meta property="og:title" content="One Last Splash Before We Move!">
+ <meta property="og:description" content="Join us for one last pool party before we move to California!">
+ <meta property="og:image" content="https://xx-farewell-party.vercel.app/images/og-image.jpg">
+ <meta property="og:image:width" content="1200">
+ <meta property="og:image:height" content="630">
+ <meta property="og:image:type" content="image/jpeg">
+ <meta property="og:url" content="https://xx-farewell-party.vercel.app/">
+ <meta property="og:type" content="website">
+ <meta property="og:site_name" content="One Last Splash Before We Move!">
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="One Last Splash Before We Move!">
+ <meta name="twitter:description" content="Join us for one last pool party before we move to California!">
+ <meta name="twitter:image" content="https://xx-farewell-party.vercel.app/images/og-image.jpg">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="sky" aria-hidden="true"><span class="sun"></span><span class="cloud cloud-one"></span><span class="cloud cloud-two"></span></div>
-  <div class="pool-decor" aria-hidden="true">
-    <span class="duck duck-left"></span><span class="duck duck-right"></span><span class="watermelon-float watermelon-one"></span><span class="watermelon-float watermelon-two"></span><span class="popsicle"></span>
-    <span class="bubble bubble-one"></span><span class="bubble bubble-two"></span><span class="bubble bubble-three"></span>
-  </div>
-  <main class="page-shell">
-    <section class="invitation-card" aria-labelledby="party-title">
-      <p class="eyebrow" id="eyebrow">A little gathering before a big adventure</p>
-      <div class="photo-frame" id="photo-frame">
-        <img id="family-photo" src="images/farewell-family.jpg" alt="Our family">
-        <div class="photo-placeholder" id="photo-placeholder" aria-label="Family photo placeholder" hidden>
-          <span>✦</span><strong>Our family photo</strong><small>Coming soon</small>
-        </div>
-      </div>
-      <h1 id="party-title">We're headed to the Bay Area!</h1>
-      <p class="intro" id="party-intro">Before we go, we'd love one more afternoon of hugs, stories, and play with the people who have made this place feel like home.</p>
+ <div class="sky" aria-hidden="true"><span class="sun"></span><span class="cloud cloud-one"></span><span class="cloud cloud-two"></span></div>
+ <div class="pool-decor" aria-hidden="true">
+   <span class="duck duck-left"></span><span class="duck duck-right"></span><span class="watermelon-float watermelon-one"></span><span class="watermelon-float watermelon-two"></span><span class="popsicle"></span>
+   <span class="bubble bubble-one"></span><span class="bubble bubble-two"></span><span class="bubble bubble-three"></span>
+ </div>
+ <main class="page-shell">
+   <section class="invitation-card" aria-labelledby="party-title">
+     <p class="eyebrow" id="eyebrow">A little gathering before a big adventure</p>
+     <div class="photo-frame" id="photo-frame">
+       <img id="family-photo" src="images/farewell-family.jpg" alt="Our family">
+       <div class="photo-placeholder" id="photo-placeholder" aria-label="Family photo placeholder" hidden>
+         <span>✦</span><strong>Our family photo</strong><small>Coming soon</small>
+       </div>
+     </div>
+     <h1 id="party-title">We're headed to the Bay Area!</h1>
+     <p class="intro" id="party-intro">Before we go, we'd love one more afternoon of hugs, stories, and play with the people who have made this place feel like home.</p>
 
-      <div class="party-details" aria-label="Party details">
-        <div class="detail"><span aria-hidden="true">📅</span><p><strong>Date</strong><span id="party-date">To be announced</span></p></div>
-        <div class="detail"><span aria-hidden="true">🕐</span><p><strong>Time</strong><span id="party-time">To be announced</span></p></div>
-        <div class="detail"><span aria-hidden="true">📍</span><p><strong>Where</strong><a id="party-location" href="#">To be announced</a></p></div>
-      </div>
-      <div class="party-note" id="party-note" hidden></div>
-      <p class="gift-note" id="gift-note" hidden></p>
-      <button id="add-to-calendar-btn" class="calendar-button" type="button" hidden>Add to calendar</button>
 
-      <section class="rsvp-section" aria-labelledby="rsvp-heading">
-        <div class="section-heading"><span>RSVP</span><h2 id="rsvp-heading">Save us a spot</h2></div>
-        <p class="rsvp-copy">Please let us know if you can make it—we’d love to celebrate together.</p>
-        <form id="rsvp-form">
-          <div class="form-group"><label for="guest-name">Your name <em>*</em></label><input id="guest-name" name="name" type="text" autocomplete="name" placeholder="First and last name" required></div>
-          <div class="form-group"><label for="guest-email">Email <em>*</em></label><input id="guest-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required></div>
-          <fieldset class="form-group attendance-group"><legend>Will you be joining us? <em>*</em></legend>
-            <label><input type="radio" name="attending" value="yes" required><span>Joyfully yes!</span></label>
-            <label><input type="radio" name="attending" value="no"><span>We’ll be there in spirit</span></label>
-          </fieldset>
-          <div class="form-row">
-            <div class="form-group"><label for="adult-count">Adults <em>*</em></label><input id="adult-count" name="adults" type="number" min="0" max="20" value="1" required></div>
-            <div class="form-group"><label for="kid-count">Kids</label><input id="kid-count" name="kids" type="number" min="0" max="20" value="0" required></div>
-          </div>
-          <div class="form-group"><label for="kid-names">Kids’ names <em id="kid-names-required" hidden>*</em></label><textarea id="kid-names" name="kidNames" rows="2" placeholder="Please list every child joining us—so we can have a little surprise ready!"></textarea><small class="field-help">Required when one or more kids are joining us.</small></div>
-          <div class="form-group"><label for="dietary-restrictions">Anything we should know?</label><textarea id="dietary-restrictions" name="dietary" rows="3" placeholder="Allergies, food preferences, or a note for us"></textarea></div>
-          <button type="submit" class="submit-btn" id="submit-btn"><span class="btn-text">Send RSVP <span aria-hidden="true">→</span></span><span class="btn-loader" hidden>Sending…</span></button>
-        </form>
-        <div id="form-message" class="form-message" role="status" hidden></div>
-      </section>
-      <p class="closing" id="closing">With love, from our family to yours</p>
-    </section>
-  </main>
-  <script src="config.js"></script>
-  <script src="script.js"></script>
+     <div class="party-details" aria-label="Party details">
+       <div class="detail"><span aria-hidden="true">📅</span><p><strong>Date</strong><span id="party-date">To be announced</span></p></div>
+       <div class="detail"><span aria-hidden="true">🕐</span><p><strong>Time</strong><span id="party-time">To be announced</span></p></div>
+       <div class="detail"><span aria-hidden="true">📍</span><p><strong>Where</strong><a id="party-location" href="#">To be announced</a></p></div>
+     </div>
+     <div class="party-note" id="party-note" hidden></div>
+     <p class="gift-note" id="gift-note" hidden></p>
+     <button id="add-to-calendar-btn" class="calendar-button" type="button" hidden>Add to calendar</button>
+
+
+     <section class="rsvp-section" aria-labelledby="rsvp-heading">
+       <div class="section-heading"><span>RSVP</span><h2 id="rsvp-heading">Save us a spot</h2></div>
+       <p class="rsvp-copy">Please let us know if you can make it—we’d love to celebrate together.</p>
+       <form id="rsvp-form">
+         <div class="form-group"><label for="guest-name">Your name <em>*</em></label><input id="guest-name" name="name" type="text" autocomplete="name" placeholder="First and last name" required></div>
+         <div class="form-group"><label for="guest-email">Email <em>*</em></label><input id="guest-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required></div>
+         <fieldset class="form-group attendance-group"><legend>Will you be joining us? <em>*</em></legend>
+           <label><input type="radio" name="attending" value="yes" required><span>Joyfully yes!</span></label>
+           <label><input type="radio" name="attending" value="no"><span>We’ll be there in spirit</span></label>
+         </fieldset>
+         <div class="form-row">
+           <div class="form-group"><label for="adult-count">Adults <em>*</em></label><input id="adult-count" name="adults" type="number" min="0" max="20" value="1" required></div>
+           <div class="form-group"><label for="kid-count">Kids</label><input id="kid-count" name="kids" type="number" min="0" max="20" value="0" required></div>
+         </div>
+         <div class="form-group"><label for="kid-names">Kids’ names <em id="kid-names-required" hidden>*</em></label><textarea id="kid-names" name="kidNames" rows="2" placeholder="Please list every child joining us—so we can have a little surprise ready!"></textarea><small class="field-help">Required when one or more kids are joining us.</small></div>
+         <div class="form-group"><label for="dietary-restrictions">Anything we should know?</label><textarea id="dietary-restrictions" name="dietary" rows="3" placeholder="Allergies, food preferences, or a note for us"></textarea></div>
+         <button type="submit" class="submit-btn" id="submit-btn"><span class="btn-text">Send RSVP <span aria-hidden="true">→</span></span><span class="btn-loader" hidden>Sending…</span></button>
+       </form>
+       <div id="form-message" class="form-message" role="status" hidden></div>
+     </section>
+     <p class="closing" id="closing">With love, from our family to yours</p>
+   </section>
+ </main>
+ <script src="config.js"></script>
+ <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
