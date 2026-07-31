@@ -12,6 +12,7 @@ const CONFIG = {
     note: [
       'We’d be so happy to celebrate with the friends and families who have made our time here so special.',
       'Hayley would especially love to see her classmates and friends.',
+      '🌊 Get ready to make a splash! Bring your swimsuit, towel, and sunscreen — we will be spending plenty of time in the pool! 🏖️',
       'Pizza and drinks will be waiting for everyone.'
     ],
     giftNote: 'No gifts, please—your presence is the perfect present (and saves us from adding anything else to the moving truck 😄).',
